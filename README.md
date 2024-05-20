@@ -28,6 +28,27 @@ int getMin(): retrieves the minimum element in the stack.
 
 All these functions have a time complexity of O(1).
 
+UndergroundSystem
+
+An underground railway system keeps track of customer travel times between different stations. They use this data to calculate the average time it takes to travel from one station to another.
+
+I have implemented an UndergroundSystem 
+class.
+UndergroundSystem()  A constructor is also present though it does not initialize anything. It just behaves like a default constructor.
+
+void checkIn(int id, string stationName, int t)
+A customer with a card ID equal to id, checks in at the station stationName at time t.
+A customer can only be checked into one place at a time.
+
+void checkOut(int id, string stationName, int t)
+A customer with a card ID equal to id, checks out from the station stationName at time t.
+
+double getAverageTime(string startStation, string endStation)
+Returns the average time it takes to travel from startStation to endStation.
+
+Process of Calculation of Average Time:
+The average time is computed from all the previous traveling times from startStation to endStation that happened directly, meaning a check in at startStation followed by a check out from endStation.
+The time it takes to travel from startStation to endStation may be different from the time it takes to travel from endStation to startStation.
 
 
 
