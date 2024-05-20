@@ -2,7 +2,7 @@
 These small projects demonstrate my understanding in Data Structures and Algorithms.
 
 
-MagicDictionary
+1)MagicDictionary
 
 I have designed a data structure that is initialized with a list of different words. When provided with a string, it determines if it is possible to change exactly one character in this string to match any word in the data structure.
 
@@ -15,7 +15,7 @@ pair<bool,string> search(String searchWord): Returns true and the string on whic
 I have used an unordered_set data structure to implement this code.
 
 
-MinStack
+2)MinStack
 I have designed a stack that supports pushing and popping an element and retrieving the top element and minimum element.
 
 I have created a MinStack class that has the following functions:
@@ -28,7 +28,7 @@ int getMin(): retrieves the minimum element in the stack.
 
 All these functions have a time complexity of O(1).
 
-UndergroundSystem
+3)UndergroundSystem
 
 An underground railway system keeps track of customer travel times between different stations. They use this data to calculate the average time it takes to travel from one station to another.
 
