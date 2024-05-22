@@ -50,8 +50,23 @@ Process of Calculation of Average Time:
 The average time is computed from all the previous traveling times from startStation to endStation that happened directly, meaning a check in at startStation followed by a check out from endStation.
 The time it takes to travel from startStation to endStation may be different from the time it takes to travel from endStation to startStation.
 
+4)Twitter
 
+Here I have designed a Twitter like App where users can post tweets, follow/unfollow another user, and is able to see the 5 most recent tweets in the user's news feed.
 
+I have implemented a Twitter Class:
 
+Twitter(): Initializes your twitter object (Non-parametrised Constructor).
+
+void postTweet(int userId, int tweetId) Composes a new tweet by the user userId. Each call to this function will be made with a unique tweet.
+vector<string> getNewsFeed(int userId): Retrieves the 5 most recent tweets in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user themself. Tweets are ordered here from most recent to least recent.
+
+void follow(int followerId, int followeeId) The user with ID followerId started following the user with ID followeeId.
+
+void unfollow(int followerId, int followeeId) The user with ID followerId started unfollowing the user with ID followeeId.
+
+I have used a Linked List to store all tweets where the class 'Tweet' has attributes like user_id,tweet and pointer to the next Tweet.
+
+There is a map to store all the followee's ids of the people that a follower is following (follower id acts as the key here in the map).
 
 
