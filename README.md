@@ -69,4 +69,24 @@ I have used a Linked List to store all tweets where the class 'Tweet' has attrib
 
 There is a map to store all the followee's ids of the people that a follower is following (follower id acts as the key here in the map).
 
+5)Food Ratings
 
+I have designed a food rating system that performs a lot of tasks:
+
+Modifes the rating of a food item listed in the system.
+Returns the highest-rated food item for a type of cuisine in the system.
+
+Here I have implemented a FoodRatings Class:
+
+FoodRatings(vector<string> foods, vector<string> cuisines, vector<int> ratings): Initializes the system. The food items are described by foods, cuisines and ratings, all of which have a length of n.
+
+foods[i] is the name of the ith food,
+cuisines[i] is the type of cuisine of the ith food, and
+ratings[i] is the initial rating of the ith food.
+
+void changeRating(String food, int newRating): Changes the rating of the food item with the name food.
+String highestRated(String cuisine): Returns the name of the food item that has the highest rating for the given type of cuisine. If there is a tie, the item comes first in alphabetical order is returned.
+
+Basic Overview:
+Here I am using 3 maps, first one stores the cuisine with their fooditems and their ratings, second one stores the food-cuisine pairs and the third one stores the food-rating pairs.
+In the set<pair<int,string>> of the first map, we store the negative value of the rating in the map because set data structure sorts in increasing order but we want the highest rated food, so we perform the specified operation as stated above.
