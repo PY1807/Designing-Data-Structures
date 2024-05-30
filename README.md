@@ -90,3 +90,18 @@ String highestRated(String cuisine): Returns the name of the food item that has 
 Basic Overview:
 Here I am using 3 maps, first one stores the cuisine with their fooditems and their ratings, second one stores the food-cuisine pairs and the third one stores the food-rating pairs.
 In the set<pair<int,string>> of the first map, we store the negative value of the rating in the map because set data structure sorts in increasing order but we want the highest rated food, so we perform the specified operation as stated above.
+
+6)Browser History
+
+I have designed a browser of one tab where I am starting on the homepage and then we can visit another url, get back in the history number of steps or move forward in the history number of steps.
+
+I have implemented a BrowserHistory class:
+
+BrowserHistory(string homepage) Initializes the object with the homepage of the browser.
+void visit(string url) Visits url from the current page. It wil clear up all the forward history.
+string back(int steps) Move steps back in history. If steps > x, we will return the oldest url that we visited.
+string forward(int steps) Move steps forward in history. If  steps > x, we will return the url that we had visited most recently.
+
+Here,I have used 2 stacks one that maintains the track of urls that we visit and the other one for keeping track of the urls visited when we are going back to previous urls for the purpose of forwarding(that is when we want to move forward from some url that was visited in the past) .
+
+
