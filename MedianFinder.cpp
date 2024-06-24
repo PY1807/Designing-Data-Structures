@@ -2,7 +2,7 @@
 using namespace std;
 
 class MedianFinder {
-    int n;
+    int n;//keeps track of number of elements in the stream of numbers
     double median;
     // We are creating 2 heaps using priority queues
     //What we are doing to is that we are going to fill both heaps simultaneously so that either the number of elements are same in both heaps or one heap has 1 element more than the other !
