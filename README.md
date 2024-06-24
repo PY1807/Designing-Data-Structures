@@ -104,4 +104,14 @@ string forward(int steps) Move steps forward in history. If  steps > x, we will 
 
 Here,I have used 2 stacks one that maintains the track of urls that we visit and the other one for keeping track of the urls visited when we are going back to previous urls for the purpose of forwarding(that is when we want to move forward from some url that was visited in the past) .
 
+7)Median Finder
 
+I have designed a data structure that can find the median in a running stream.
+
+I have implemented a MedianFinder class:
+
+MedianFinder(): It just initializes number of elements in stream as 0
+void addNum(int num): Here the new number in the stream is added.
+double findMedian():It finds the median of the numbers arrived till that moment in the stream.
+
+I have used 2 heaps- one is a max-heap and the other is a min-heap to find out the median.
