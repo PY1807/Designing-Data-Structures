@@ -1,0 +1,137 @@
+#include<bits/stdc++.h>
+using namespace std;
+class LRUCache {
+public:
+   class Node{
+        public: 
+            int key;//storing the key
+            int val;//storing the the value corresponding to the key
+            Node* prev;//It will store the previous node that is more recently visited than the current node
+            Node* next;//It will store the previous node that is less recently visited than the current node
+            Node(int key, int val){
+                this->key = key;
+                this->val = val;
+            }
+    };
+
+    Node* head = new Node(-1, -1);//These 'head' and 'tail' nodes are 
+    Node* tail = new Node(-1, -1);//created to get rid of the problem of dealing with the 'NULL' pointers
+
+    int cap;
+    unordered_map<int, Node*> m;//A mapping to store the key-Node pairs
+
+    LRUCache(int capacity) {
+        cap = capacity;
+        head -> next = tail;
+        tail -> prev = head;
+    }// Implementing Cache using Double Linked List
+
+    void addNode(Node* newnode){
+        Node* temp = head -> next;
+
+        newnode -> next = temp;
+        newnode -> prev = head;
+
+        head -> next = newnode;
+        temp -> prev = newnode;//Updating all pointers to insert the newly presented key-value pair
+    }
+
+    void deleteNode(Node* delnode)
+    //We will reach this function only when our Cache has reached its Maximum capacity and then to insert a new entry we will have to remove one of the entries that are already present in our Cache.
+    {
+        Node* prevv = delnode -> prev;
+        Node* nextt = delnode -> next;
+
+        prevv -> next = nextt;
+        nextt -> prev = prevv;//Updating the pointers to delete the least recently used node(key-value pair)
+    }
+    
+    int get(int key) {
+        if(m.find(key) != m.end())
+        //If key-value pair is present
+        {
+            Node* resNode = m[key];
+            int ans = resNode -> val;//Getting the corresponding value of the key that the user demands
+
+            m.erase(key);
+            deleteNode(resNode);//deleting the node 
+            addNode(resNode);// and then inserting it at the head to show that it was visited just now
+
+            m[key] = head -> next;//updating the mapping of the key-Node pair
+            return ans;
+        }
+        return -1;//If key-value pair is not present
+    }
+    
+    void put(int key, int value) {
+        if(m.find(key) != m.end())
+        //If key-value pair is present
+        {
+            Node* curr = m[key];
+            m.erase(key);//Erasing the old mapping of the key-value pair 
+            deleteNode(curr);// so that afterwards the mapping can be updated and also deleting this node
+        }
+
+        if(m.size() == cap){
+            m.erase(tail -> prev -> key);// If Cache has reached its maximum capacity then we will remove the key-value pair and also delete the node that we visited in the longest time
+            deleteNode(tail -> prev);
+        }
+
+        addNode(new Node(key, value));
+        m[key] = head -> next;//updating the mapping of the key-Node pair
+    }
+};
+
+void Preparing_Of_Cache(LRUCache* obj)
+{
+    cout<<"Enter the key value pairs that you want to insert into the Cache press y for yes or n for no"<<endl;
+  char ch;
+  cin>>ch;
+  
+  while(ch=='y')
+  {
+      int key,value;
+      cin>>key>>value;
+      obj->put(key,value);
+      cout<<" Press y for yes or n for no"<<endl;
+      cin>>ch;
+  }
+  cout<<"Cache Prepared !!!"<<endl<<endl;
+}
+
+void ask_user_then_display(LRUCache* obj)
+{
+      int user_input;
+  cout<<"Enter the key whose value you want to access :-"<<endl;
+  cin>>user_input;
+  
+  int value_user_input=obj->get(user_input);
+  if(value_user_input==-1)
+  {
+     cout<<"The key-value pair that you are demanding is not present in the Cache"<<endl; 
+  }
+  else
+  {
+    cout<<"The value for the "<<user_input<<" = "<<value_user_input<<endl;
+  }
+}
+
+int main()
+{
+    
+  cout<<"Here we are implementing the LRU Cache (Least Recently Used) . This is a page replacement algorithms."<<endl;
+  
+  int capacity;
+  cout<<"Enter the capacity of the Cache that you want to keep :-"<<endl;
+  cin>>capacity;
+  
+  LRUCache* obj = new LRUCache(capacity);
+  
+  Preparing_Of_Cache(obj);
+  
+  ask_user_then_display(obj);
+  
+  ask_user_then_display(obj);//1 8 2 23 3 98 
+  
+  ask_user_then_display(obj);
+}
